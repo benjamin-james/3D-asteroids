@@ -5,7 +5,6 @@
 void initGL();
 void setViewport(int w, int h);
 int input();
-void handleEvent(SDL_Event *e);
 
 int main(int argc, char **argv)
 {
@@ -15,7 +14,7 @@ int main(int argc, char **argv)
   SDL_Window *window = SDL_CreateWindow(*argv, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI);	
   SDL_GL_CreateContext(window);
   initGL();
-  setViewport(WINDOW_WIDTH, WINDOW_HEIGHT);
+  setViewport(width, height);
   Uint32 now,last = SDL_GetTicks();
   while(input())
   {
@@ -76,5 +75,4 @@ void setViewport(int width, int height)
 	/*gluPerspective alternative end*/
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
-	return glGetError() == GL_NO_ERROR;
 }

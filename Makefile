@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-g -Wall
-LDFLAGS=-lSDL2 -lSDL2_opengl -lopengl32
-all:
+CFLAGS=-g -Wall -Og
+LDFLAGS=-lSDL2 -lSDL2_opengl -lGL
+game:
   $(CC) $(CFLAGS) src/main.c src/game.c -o game $(LDFLAGS)

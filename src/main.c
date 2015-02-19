@@ -4,8 +4,7 @@
 
 void initGL();
 void setViewport(int w, int h);
-int input();
-
+int input(SDL_Window *window);
 int main(int argc, char **argv)
 {
   int width = 800;
@@ -16,7 +15,7 @@ int main(int argc, char **argv)
   initGL();
   setViewport(width, height);
   Uint32 now,last = SDL_GetTicks();
-  while(input())
+  while(input(window))
   {
   	render();
   	SDL_GL_SwapWindow(window);
@@ -30,9 +29,11 @@ int main(int argc, char **argv)
   return 0;
 }
 
-int input()
+int input(SDL_Window *window)
 {
 	SDL_Event e;
+	int x,y;
+	double dx,dy;
   	while(SDL_PollEvent(&e))
   	{
   		switch(e.type)
@@ -43,7 +44,12 @@ int input()
   			case SDL_KEYDOWN:	
   			case SDL_KEYUP:		handleKey(e.key.keysym.sym,e.key.state);
   						break;
-  			case SDL_MOUSEMOTION: 	mouseMoved(e.motion.xrel,e.motion.yrel);
+  			case SDL_MOUSEMOTION: 	
+  						
+  						SDL_GetWindowSize(window,&x,&y);
+  						dx = (2.0*e.motion.x)/x - 1; //from (e.motion.x - x/2)/(x/2)
+  						dy = (2.0*e.motion.y)/y - 1;
+  						mouseMoved(dx,-dy);//y is flipped (origin is at top)
   						break;
   		}
   	}

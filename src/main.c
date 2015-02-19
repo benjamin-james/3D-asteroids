@@ -1,11 +1,11 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_opengl.h"
+#include "game.h"
 
-//extern void render();
-//extern void update(double delta);
 void initGL();
 void setViewport(int w, int h);
 int input();
+void handleEvent(SDL_Event *e);
 
 int main(int argc, char **argv)
 {
@@ -23,7 +23,8 @@ int main(int argc, char **argv)
   	render();
   	SDL_GL_SwapWindow(window);
   	now = SDL_GetTicks();
-  	update(now-last);
+  	float delta = (now-last)/1000.0;
+  	update(delta);
  	last = now;
   }
   SDL_DestroyWindow(window);
@@ -42,6 +43,10 @@ int input()
   	return 1;
 }
 
+void handleEvent(SDL_Event *e)
+{
+	
+}
 void initGL()
 {
 	glShadeModel( GL_SMOOTH );

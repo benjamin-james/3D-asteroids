@@ -2,6 +2,8 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_opengl.h"
 
+double joystick[2]; //joystick angle and magnitude
+
 void render()
 {
 
@@ -21,7 +23,8 @@ void handleKey(SDL_Keycode key, Uint32 status)
 	  //do stuff
 	}
 }
-void mouseMoved(int x, int y) //delta position
+void joystick(double x, double y) //range of [-1,1] for x and y
 {
-  
+	joystick[0] = atan2(y,x);
+	joystick[1] = hypot(x,y);
 }

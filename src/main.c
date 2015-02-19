@@ -49,7 +49,7 @@ int input(SDL_Window *window)
   						SDL_GetWindowSize(window,&x,&y);
   						dx = (2.0*e.motion.x)/x - 1; //from (e.motion.x - x/2)/(x/2)
   						dy = (2.0*e.motion.y)/y - 1;
-  						mouseMoved(dx,-dy);//y is flipped (origin is at top)
+  						joystick(dx,-dy);//y is flipped (origin is at top)
   						break;
   		}
   	}

@@ -16,8 +16,7 @@ int main(int argc, char **argv)
   SDL_GL_CreateContext(window);
   initGL();
   setViewport(WINDOW_WIDTH, WINDOW_HEIGHT);
-  Uint32 last, now;
-  last = SDL_GetTicks();
+  Uint32 now,last = SDL_GetTicks();
   while(input())
   {
   	render();
@@ -37,15 +36,19 @@ int input()
 	SDL_Event e;
   	while(SDL_PollEvent(&e))
   	{
-  		if(e.type == SDL_QUIT) return 0;
-  		handleEvent(&e);
+  		switch(e.type)
+  		{
+  			case SDL_QUIT: 		return 0;
+  			case SDL_WINDOWEVENT:	if(e.window.type == SDL_WINDOWEVENT_CLOSE) return 0;
+  						break;
+  			case SDL_KEYDOWN:	
+  			case SDL_KEYUP:		handleKey(e.key.keysym.sym,e.key.state);
+  						break;
+  			case SDL_MOUSEMOTION: 	mouseMoved(e.motion.xrel,e.motion.yrel);
+  						break;
+  		}
   	}
   	return 1;
-}
-
-void handleEvent(SDL_Event *e)
-{
-	
 }
 void initGL()
 {
@@ -65,10 +68,12 @@ void setViewport(int width, int height)
 	glViewport( 0, 0, ( GLsizei )width, ( GLsizei )height );
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity( );
+	/*gluPerspective alternative*/
 	GLdouble fW, fH;
 	fH = tan( (45.0 / 2) / 180 * pi ) * 0.1f;
 	fW = fH * ratio;
 	glFrustum(-fW,fW,-fH,fH,0.1f,100.0f);
+	/*gluPerspective alternative end*/
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
 	return glGetError() == GL_NO_ERROR;

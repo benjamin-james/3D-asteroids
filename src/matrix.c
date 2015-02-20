@@ -58,9 +58,12 @@ mat4 mat4_rotate(mat4 m, vec3 axis)
 }
 mat3 _mat3()
 {
-  return {{ 1,0,0,
-            0,1,0,
-            0,0,1}};
+  mat3 r = {{ 
+    1,0,0,
+    0,1,0,
+    0,0,1
+  }};
+  return r;
 }
 mat3 mat3_multiply(mat3 m1, mat3 m2)
 {
@@ -77,27 +80,30 @@ mat3 mat3_multiply(mat3 m1, mat3 m2)
 }
 mat3 mat3_rotx(float a)
 {
-  return {{
+  mat3 r = {{
     1,0,0,
     0,cosf(a),-sinf(a),
     0,sinf(a),cosf(a)
   }};
+  return r;
 }
 mat3 mat3_roty(float a)
 {
-  return {{
+  mat3 r = {{
     cosf(a),0,sinf(a),
     0,1,0,
     -sinf(a),0,cosf(a)
   }};  
+  return r;
 }
 mat3 mat3_rotz(float a)
 {
-  return {{
+  mat3 r = {{
     cosf(a),-sinf(a),0,
     sinf(a),cosf(a),0,
     0,0,1
   }};
+  return r;
 }
 mat3 mat3_rotate(vec3 axis)
 {

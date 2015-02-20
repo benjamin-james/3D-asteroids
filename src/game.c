@@ -14,10 +14,10 @@ void render()
 	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glPushMatrix();
-	glRotatef(rot[0],1,0,0);
-	glRotatef(rot[1],0,1,0);
-	glRotatef(rot[2],0,0,1);
-	glTranslatef(pos[0],pos[1],pos[2]);
+	glRotatef(rot.x,1,0,0);
+	glRotatef(rot.y,0,1,0);
+	glRotatef(rot.z,0,0,1);
+	glTranslatef(pos.x,pos.y,pos.z);
 	
 	glBegin(GL_QUADS);
 

@@ -13,7 +13,6 @@ typedef struct
 entity entity_create();
 void entity_destroy(entity e);
 
-void useView(entity e);
 void render(entity e);
-
+void update(entity e, float delta);
 #endif

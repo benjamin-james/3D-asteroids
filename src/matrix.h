@@ -22,6 +22,7 @@ mat3 _mat3();
 mat3 mat3_rotx(float a);
 mat3 mat3_roty(float a);
 mat3 mat3_rotz(float a);
+vec3 mat3_mcolumn(mat3 m, vec3 column);
 mat3 mat3_multiply(mat3 m1, mat3 m2);
 mat3 mat3_rotate(vec3 axis);
 mat3 mat3_translate(mat3 m, vec3 pos);

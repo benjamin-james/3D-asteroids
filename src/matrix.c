@@ -33,14 +33,15 @@ inline GLfloat m_get(mat4 m, int x, int y)
 {
   return m[x*4+y];
 }
+*/
 mat4 _mat4()
 {
-  mat4 r = {1,0,0,0,
+  mat4 r = {{1,0,0,0,
             0,1,0,0,
             0,0,1,0,
-            0,0,0,1};
+            0,0,0,1}};
   return r;
-}
+}/*
 vec4 _vec4(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
 {
   vec4 v = {a,b,c,d};
@@ -50,7 +51,7 @@ vec3 _vec3(float a, float b, float c)
 {
   vec3 v = {a,b,c};
   return v;
-}/*
+}
 mat4 mat4_clone(mat4 m)
 {
   int i;
@@ -65,15 +66,27 @@ mat4 mat4_translate(mat4 m, vec3 axis)
 {
   return _mat4();//TODO: do this
 }
-mat4 _mat4_translate(vec3 axis)
-{
-  return mat4_translate(_mat4(),axis);
-}
 mat4 mat4_rotate(mat4 m, vec3 axis)
 {
   return _mat4();//TODO: do this
 }
-mat4 _mat4_rotate(vec3 axis)
+mat4 mat4_multiply(mat4 m1, mat4 m2)
 {
-  return mat4_rotate(_mat4(),axis);
-}*/
+  mat4 m = _mat4();
+  m[M4(0,0)] = m1[M4(0,0)] * m2[M4(0,0)] + m1[M4(0,1)] * m2[M4(1,0)] + m1[M4(0,2)] * m2[M4(2,0)] + m1[M4(0,3)] * m2[M4(3,0)];
+  *(dest+O(0,1)) = (*(src1+O(0,0)) * *(src2+O(0,1))) + (*(src1+O(0,1)) * *(src2+O(1,1))) + (*(src1+O(0,2)) * *(src2+O(2,1))) + (*(src1+O(0,3)) * *(src2+O(3,1)));	
+  *(dest+O(0,2)) = (*(src1+O(0,0)) * *(src2+O(0,2))) + (*(src1+O(0,1)) * *(src2+O(1,2))) + (*(src1+O(0,2)) * *(src2+O(2,2))) + (*(src1+O(0,3)) * *(src2+O(3,2)));	
+  *(dest+O(0,3)) = (*(src1+O(0,0)) * *(src2+O(0,3))) + (*(src1+O(0,1)) * *(src2+O(1,3))) + (*(src1+O(0,2)) * *(src2+O(2,3))) + (*(src1+O(0,3)) * *(src2+O(3,3)));	
+  *(dest+O(1,0)) = (*(src1+O(1,0)) * *(src2+O(0,0))) + (*(src1+O(1,1)) * *(src2+O(1,0))) + (*(src1+O(1,2)) * *(src2+O(2,0))) + (*(src1+O(1,3)) * *(src2+O(3,0)));	
+  *(dest+O(1,1)) = (*(src1+O(1,0)) * *(src2+O(0,1))) + (*(src1+O(1,1)) * *(src2+O(1,1))) + (*(src1+O(1,2)) * *(src2+O(2,1))) + (*(src1+O(1,3)) * *(src2+O(3,1)));	
+  *(dest+O(1,2)) = (*(src1+O(1,0)) * *(src2+O(0,2))) + (*(src1+O(1,1)) * *(src2+O(1,2))) + (*(src1+O(1,2)) * *(src2+O(2,2))) + (*(src1+O(1,3)) * *(src2+O(3,2)));	
+  *(dest+O(1,3)) = (*(src1+O(1,0)) * *(src2+O(0,3))) + (*(src1+O(1,1)) * *(src2+O(1,3))) + (*(src1+O(1,2)) * *(src2+O(2,3))) + (*(src1+O(1,3)) * *(src2+O(3,3)));	
+  *(dest+O(2,0)) = (*(src1+O(2,0)) * *(src2+O(0,0))) + (*(src1+O(2,1)) * *(src2+O(1,0))) + (*(src1+O(2,2)) * *(src2+O(2,0))) + (*(src1+O(2,3)) * *(src2+O(3,0)));	
+  *(dest+O(2,1)) = (*(src1+O(2,0)) * *(src2+O(0,1))) + (*(src1+O(2,1)) * *(src2+O(1,1))) + (*(src1+O(2,2)) * *(src2+O(2,1))) + (*(src1+O(2,3)) * *(src2+O(3,1)));	
+  *(dest+O(2,2)) = (*(src1+O(2,0)) * *(src2+O(0,2))) + (*(src1+O(2,1)) * *(src2+O(1,2))) + (*(src1+O(2,2)) * *(src2+O(2,2))) + (*(src1+O(2,3)) * *(src2+O(3,2)));	
+  *(dest+O(2,3)) = (*(src1+O(2,0)) * *(src2+O(0,3))) + (*(src1+O(2,1)) * *(src2+O(1,3))) + (*(src1+O(2,2)) * *(src2+O(2,3))) + (*(src1+O(2,3)) * *(src2+O(3,3)));	
+  *(dest+O(3,0)) = (*(src1+O(3,0)) * *(src2+O(0,0))) + (*(src1+O(3,1)) * *(src2+O(1,0))) + (*(src1+O(3,2)) * *(src2+O(2,0))) + (*(src1+O(3,3)) * *(src2+O(3,0)));	
+  *(dest+O(3,1)) = (*(src1+O(3,0)) * *(src2+O(0,1))) + (*(src1+O(3,1)) * *(src2+O(1,1))) + (*(src1+O(3,2)) * *(src2+O(2,1))) + (*(src1+O(3,3)) * *(src2+O(3,1)));	
+  *(dest+O(3,2)) = (*(src1+O(3,0)) * *(src2+O(0,2))) + (*(src1+O(3,1)) * *(src2+O(1,2))) + (*(src1+O(3,2)) * *(src2+O(2,2))) + (*(src1+O(3,3)) * *(src2+O(3,2)));	
+  *(dest+O(3,3)) = (*(src1+O(3,0)) * *(src2+O(0,3))) + (*(src1+O(3,1)) * *(src2+O(1,3))) + (*(src1+O(3,2)) * *(src2+O(2,3))) + (*(src1+O(3,3)) * *(src2+O(3,3)));
+}

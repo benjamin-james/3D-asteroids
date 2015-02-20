@@ -1,4 +1,5 @@
 #include "matrix.h"
+#include "math.h"
 #include "GL/gl.h"
 
 vec3 rotx(vec3 v, GLfloat a)
@@ -15,10 +16,13 @@ vec3 rotz(vec3 v, GLfloat a)
 }
 vec3 vec3_rot(vec3 pos, vec3 rot)
 {
+  vec3 x = rotz(roty(rotx(_vec3(1.f,0.f,0.f),rot.x),rot.y),rot.y);
+  vec3 y = rotz(roty(rotx(_vec3(0.f,1.f,0.f),rot.x),rot.y),rot.y);
+  vec3 z = rotz(roty(rotx(_vec3(0.f,0.f,1.f),rot.x),rot.y),rot.y);
   return _vec3( 
-                pos.x*rotz(roty(rotx(_vec3(1.f,0.f,0.f),rot.x),rot.y),rot.y),
-                pos.y*rotz(roty(rotx(_vec3(0.f,1.f,0.f),rot.x),rot.y),rot.y),
-                pos.z*rotz(roty(rotx(_vec3(0.f,0.f,1.f),rot.x),rot.y),rot.y)
+                pos.x*x.x + pos.y*y.x + pos.z*z.x,
+                pos.x*x.y + pos.y*y.y + pos.z*z.y,
+                pos.x*x.z + pos.y*y.z + pos.z*z.z
               );
 }/*
 inline void m_set(mat4 m, int x, int y, GLfloat value)

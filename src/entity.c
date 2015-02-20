@@ -18,12 +18,3 @@ void entity_destroy(entity e)
   if(e->index) glDeleteLists(e->index,1);
   free(e);
 }
-
-void useView(entity e)
-{
-  
-}
-void render(entity e)
-{
-  
-}

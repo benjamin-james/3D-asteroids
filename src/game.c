@@ -2,7 +2,7 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_opengl.h"
 
-double joystick[2]; //joystick angle and magnitude
+double joy_stick[2]; //joystick x y
 
 double x,y,z,rx,ry,rz;
 double speed = 2.0;
@@ -36,8 +36,8 @@ void render()
 }
 void update(double delta)
 {
-	ry += delta*joystick[1];
-	rz += delta*joystick[0];
+	ry += delta*joy_stick[1];
+	rz += delta*joy_stick[0];
 	z += delta*speed;
 }
 void handleKey(SDL_Keycode key, Uint32 status)
@@ -53,8 +53,8 @@ void handleKey(SDL_Keycode key, Uint32 status)
 }
 void joystick(double x, double y) //range of [-1,1] for x and y
 {
-	joystick[0] = x;
-	joystick[1] = y;
+	joy_stick[0] = x;
+	joy_stick[1] = y;
 	//joystick[0] = atan2(y,x);
 	//joystick[1] = hypot(x,y);
 }

@@ -73,20 +73,24 @@ void update(double delta)
 {
 	rot.x += delta*stick.y;
 	rot.z += delta*stick.x;
-	vec3 dVec = vec3_rot(_vec3(0.f,0.f,speed*delta),rot);
-	pos.x += dVec.x;
-	pos.y += dVec.y;
-	pos.z += dVec.z;
+	if(stick.z)//used for movement
+	{
+		vec3 dVec = vec3_rot(_vec3(0.f,0.f,stick.z*delta),rot);
+		pos.x += dVec.x;
+		pos.y += dVec.y;
+		pos.z += dVec.z;
+	}
 }
 void handleKey(SDL_Keycode key, Uint32 status)
 {
 	if(status == SDL_PRESSED)
 	{
-	  //do stuff
+	  if(key == SDLK_UP) stick.z = speed;
+	  else if(key == SDLK_DOWN) stick.z = -speed;
 	}
 	else if(status == SDL_RELEASED)
 	{
-	  //do stuff
+	  stick.z = 0;
 	}
 }
 void joystick(double x, double y) //range of [-1,1] for x and y

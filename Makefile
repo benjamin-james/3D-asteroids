@@ -1,5 +1,5 @@
 CC=gcc
 CFLAGS=-g -Wall -Og
-LDFLAGS=-lSDL2 -lGL
-game: src/main.c src/game.c
-	$(CC) $(CFLAGS) src/main.c src/game.c -o game $(LDFLAGS)
+LDFLAGS=-lSDL2 -lGL -lm
+game: src/main.c src/game.c src/matrix.c
+	$(CC) $(CFLAGS) src/main.c src/game.c src/matrix.c -o game $(LDFLAGS)

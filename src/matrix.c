@@ -2,15 +2,15 @@
 #include "math.h"
 //#include "GL/gl.h"
 
-vec3 rotx(vec3 v, GLfloat a)
+vec3 rotx(vec3 v, float a)
 {
   return _vec3(v.x,v.y*cos(a) - v.z*sin(a),v.y*sin(a) + v.z*cos(a));
 }
-vec3 roty(vec3 v, GLfloat a)
+vec3 roty(vec3 v, float a)
 {
   return _vec3(v.x*cos(a)+v.z*sin(a),v.y,-v.x*sin(a)+v.z*cos(a));
 }
-vec3 rotz(vec3 v, GLfloat a)
+vec3 rotz(vec3 v, float a)
 {
   return _vec3(v.x*cos(a) - v.y*sin(a),v.x*sin(a)+v.y*cos(a),v.z);
 }
@@ -46,7 +46,7 @@ vec4 _vec4(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
   vec4 v = {a,b,c,d};
   return v;
 }*/
-vec3 _vec3(GLfloat a, GLfloat b, GLfloat c)
+vec3 _vec3(float a, float b, float c)
 {
   vec3 v = {a,b,c};
   return v;

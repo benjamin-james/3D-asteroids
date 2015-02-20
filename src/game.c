@@ -11,6 +11,7 @@ void render()
 	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glLoadIdentity();
+	glPushMatrix();
 	glRotatef(rx,1,0,0);
 	glRotatef(ry,0,1,0);
 	glRotatef(rz,0,0,1);
@@ -33,6 +34,7 @@ void render()
 		glVertex3f(0,0.5,-0.5);
 	}
 	glEnd();
+	glPopMatrix();
 }
 void update(double delta)
 {

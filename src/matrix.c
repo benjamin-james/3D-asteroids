@@ -69,9 +69,12 @@ mat3 mat3_multiply(mat3 m1, mat3 m2)
 {
   mat3 r = _mat3();
   int i,j,m,n;
-  for(i=0;i<3;i++) {
-    for(j=0;j<3;j++) {
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
       for(m=0;m<3;m++) 
+      {
         r.m[M3(i,j)] += m1.m[M3(i,m)]*m2.m[M3(m,j)];
       }
     }

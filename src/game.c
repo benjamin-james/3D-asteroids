@@ -4,7 +4,7 @@
 
 double joy_stick[2]; //joystick x y
 
-double x,y,z=-6,rx,ry,rz;
+double x=0,y=0,z=-6,rx=0,ry=0,rz=0;
 double speed = 2.0;
 void render()
 {

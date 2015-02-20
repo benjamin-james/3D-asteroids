@@ -19,8 +19,11 @@ typedef struct
 
 mat4 _mat4();
 mat3 _mat3();
+mat3 mat3_rotx(float a);
+mat3 mat3_roty(float a);
+mat3 mat3_rotz(float a);
 mat3 mat3_multiply(mat3 m1, mat3 m2);
-mat3 mat3_rotate(vec3 axis, float a);
+mat3 mat3_rotate(vec3 axis);
 mat3 mat3_translate(mat3 m, vec3 pos);
 mat4 mat4_multiply(mat4 m1, mat4 m2);
 vec3 _vec3(float a, float b, float c);

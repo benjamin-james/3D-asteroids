@@ -71,8 +71,8 @@ void render()
 }
 void update(double delta)
 {
-	rot[1] += delta*joy_stick[1];
-	rot[2] += delta*joy_stick[0];
+	rot[1] += delta*stick[1];
+	rot[2] += delta*stick[0];
 	vec3 dVec = vec3_rot(_vec3(0.f,0.f,speed*delta),rot);
 	pos[0] += dVec[0];
 	pos[1] += dVec[1];

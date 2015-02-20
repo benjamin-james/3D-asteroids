@@ -16,7 +16,7 @@ void render()
 	glRotatef(rz,0,0,1);
 	glTranslatef(x,y,z);
 	
-	glBegin(GL_TRIANGLES)
+	glBegin(GL_TRIANGLES);
 	{
 		glColor4f(1,0,0,1);
 		glVertex3f(0,0,1);

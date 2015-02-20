@@ -8,7 +8,7 @@ vec3 stick = {0,0,0}; //joystick x y
 vec3 pos = {0,0,-6};
 vec3 rot = {0,0,0};
 
-double speed = 2.0;
+GLfloat speed = 2.0;
 void render()
 {
 	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
@@ -71,12 +71,12 @@ void render()
 }
 void update(double delta)
 {
-	rot[1] += delta*stick[1];
-	rot[2] += delta*stick[0];
+	rot.x += delta*stick.y;
+	rot.z += delta*stick.x;
 	vec3 dVec = vec3_rot(_vec3(0.f,0.f,speed*delta),rot);
-	pos[0] += dVec[0];
-	pos[1] += dVec[1];
-	pos[2] += dVec[2];
+	pos.x += dVec.x;
+	pos.y += dVec.y;
+	pos.z += dVec.z;
 }
 void handleKey(SDL_Keycode key, Uint32 status)
 {
@@ -91,8 +91,8 @@ void handleKey(SDL_Keycode key, Uint32 status)
 }
 void joystick(double x, double y) //range of [-1,1] for x and y
 {
-	stick[0] = x;
-	stick[1] = y;
-	//stick[0] = atan2(y,x); //polar
-	//stick[1] = hypot(x,y);
+	stick.x = x;
+	stick.y = y;
+	//stick.x = atan2(y,x); //polar
+	//stick.y = hypot(x,y);
 }

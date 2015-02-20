@@ -52,11 +52,12 @@ vec3 mat3_mcolumn(mat3 m, vec3 column)
 {
   int i,j;
   float array[3] = {0,0,0};
+  float v[3] = {column.x,column.y,column.z};
   for(i = 0; i < 3; i++)
   {
     for(j = 0; j < 3; j++)
     {
-      array[i] += column[j]*m.m[M3(i,j)];
+      array[i] += v[j]*m.m[M3(i,j)];
     }
   }
   return _vec3(array[0],array[1],array[2]);

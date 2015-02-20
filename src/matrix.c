@@ -56,6 +56,58 @@ mat4 mat4_rotate(mat4 m, vec3 axis)
 {
   return _mat4();//TODO: do this
 }
+mat3 _mat3()
+{
+  return {{ 1,0,0,
+            0,1,0,
+            0,0,1}};
+}
+mat3 mat3_multiply(mat3 m1, mat3 m2)
+{
+  mat3 r = _mat3();
+  int i,j,m,n;
+  for(i=0;i<3;i++) {
+    for(j=0;j<3;j++) {
+      for(m=0;m<3;m++) 
+        r.m[M3(i,j)] += m1.m[M3(i,m)]*m2.m[M3(m,j)];
+      }
+    }
+  }
+  return r;
+}
+mat3 mat3_rotx(float a)
+{
+  return {{
+    1,0,0,
+    0,cosf(a),-sinf(a),
+    0,sinf(a),cosf(a)
+  }};
+}
+mat3 mat3_roty(float a)
+{
+  return {{
+    cosf(a),0,sinf(a),
+    0,1,0,
+    -sinf(a),0,cosf(a)
+  }};  
+}
+mat3 mat3_rotz(float a)
+{
+  return {{
+    cosf(a),-sinf(a),0,
+    sinf(a),cosf(a),0,
+    0,0,1
+  }};
+}
+mat3 mat3_rotate(vec3 axis)
+{
+  mat3 x,y,z;
+  x = mat3_rotx(axis.x);
+  y = mat3_roty(axis.y);
+  z = mat3_rotz(axis.z);
+  return mat3_multiply(mat3_multiply(z,y),x);
+}
+mat3 mat3_translate(mat3 m, vec3 pos);
 mat4 mat4_multiply(mat4 m1, mat4 m2)
 {
   mat4 m = _mat4();

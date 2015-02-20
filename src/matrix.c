@@ -4,15 +4,15 @@
 
 vec3 rotx(vec3 v, float a)
 {
-  return _vec3(v.x,v.y*cos(a) - v.z*sin(a),v.y*sin(a) + v.z*cos(a)];
+  return _vec3(v.x,v.y*cosf(a) - v.z*sinf(a),v.y*sinf(a) + v.z*cosf(a));
 }
 vec3 roty(vec3 v, float a)
 {
-  return _vec3(v.x*cos(a)+v.z*sin(a),v.y,-v.x*sin(a)+v.z*cos(a)];
+  return _vec3(v.x*cosf(a)+v.z*sinf(a),v.y,-v.x*sinf(a)+v.z*cosf(a));
 }
 vec3 rotz(vec3 v, float a)
 {
-  return _vec3(v.x*cos(a) - v.y*sin(a),v.x*sin(a)+v.y*cos(a),v.z);
+  return _vec3(v.x*cosf(a) - v.y*sinf(a),v.x*sinf(a)+v.y*cosf(a),v.z);
 }
 vec3 vec3_rot(vec3 pos, vec3 rot)
 {

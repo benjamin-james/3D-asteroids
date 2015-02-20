@@ -48,6 +48,19 @@ mat4 mat4_clone(mat4 m)
   }
   return r;
 }
+vec3 mat3_mcolumn(mat3 m, vec3 column)
+{
+  int i,j;
+  float array[3] = {0,0,0};
+  for(i = 0; i < 3; i++)
+  {
+    for(j = 0; j < 3; j++)
+    {
+      array[i] += column[j]*m.m[M3(i,j)];
+    }
+  }
+  return _vec3(array[0],array[1],array[2]);
+}
 mat4 mat4_translate(mat4 m, vec3 axis)
 {
   return _mat4();//TODO: do this

@@ -1,19 +1,29 @@
 #include "matrix.h"
 #include "GL/gl.h"
 
-vec3 rotx(vec3 v, GLdouble a)
+vec3 rotx(vec3 v, GLfloat a)
 {
-  return _vec(v[0],v[1]*cos(a) - v[2]*sin(a),v[1]*sin(a) + v[2]*cos(a));
+  return _vec3(v[0],v[1]*cos(a) - v[2]*sin(a),v[1]*sin(a) + v[2]*cos(a));
 }
-vec3 vec3_rot(vec3 v, vec3 axis, GLdouble a)
+vec3 roty(vec3 v, GLfloat a)
 {
-  
+  return _vec3(v[0]*cos(a)+v[2]*sin(a),v[1],-v[0]*sin(a)+v[2]*cos(a));
 }
-inline void m_set(mat4 m, int x, int y, GLdouble value)
+vec3 rotz(vec3 v, GLfloat a)
+{
+  return _vec3(v[0]*cos(a) - v[1]*sin(a),v[0]*sin(a)+v[1]*cos(a),v[2]);
+}
+vec3 vec3_rot(vec3 pos, vec3 rot, GLfloat a)
+{
+  return _vec3( pos[0]*rotz(roty(rotx(_vec3(1.f,0.f,0.f),rot[0]),rot[1]),rot[2]),
+                pos[1]*rotz(roty(rotx(_vec3(0.f,1.f,0.f),rot[0]),rot[1]),rot[2]),
+                pos[2]*rotz(roty(rotx(_vec3(0.f,0.f,1.f),rot[0]),rot[1]),rot[2]));
+}
+inline void m_set(mat4 m, int x, int y, GLfloat value)
 {
   m[x*4+y] = value;
 }
-inline GLdouble m_get(mat4 m, int x, int y)
+inline GLfloat m_get(mat4 m, int x, int y)
 {
   return m[x*4+y];
 }
@@ -25,12 +35,12 @@ mat4 _mat4()
             0,0,0,1};
   return r;
 }
-vec4 _vec4(GLdouble a, GLdouble b, GLdouble c, GLdouble d)
+vec4 _vec4(GLfloat a, GLfloat b, GLfloat c, GLfloat d)
 {
   vec4 v = {a,b,c,d};
   return v;
 }
-vec3 _vec3(GLdouble a, GLdouble b, GLdouble c)
+vec3 _vec3(GLfloat a, GLfloat b, GLfloat c)
 {
   vec3 v = {a,b,c};
   return v;

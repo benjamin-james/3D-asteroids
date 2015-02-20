@@ -13,7 +13,7 @@ vec3 rotz(vec3 v, GLfloat a)
 {
   return _vec3(v[0]*cos(a) - v[1]*sin(a),v[0]*sin(a)+v[1]*cos(a),v[2]);
 }
-vec3 vec3_rot(vec3 pos, vec3 rot, GLfloat a)
+vec3 vec3_rot(vec3 pos, vec3 rot)
 {
   return _vec3( pos[0]*rotz(roty(rotx(_vec3(1.f,0.f,0.f),rot[0]),rot[1]),rot[2]),
                 pos[1]*rotz(roty(rotx(_vec3(0.f,1.f,0.f),rot[0]),rot[1]),rot[2]),

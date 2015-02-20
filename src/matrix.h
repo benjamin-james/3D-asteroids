@@ -18,4 +18,7 @@ mat4 _mat4_translate(vec3 pos);
 mat4 mat4_rotate(mat4 m, vec3 rot);
 mat4 _mat4_rotate(vec3 rot);*/
 vec3 vec3_rot(vec3 pos, vec3 rot);
+vec3 rotz(vec3 v, GLfloat a);
+vec3 roty(vec3 v, GLfloat a);
+vec3 rotx(vec3 v, GLfloat a);
 #endif

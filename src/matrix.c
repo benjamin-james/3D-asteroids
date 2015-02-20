@@ -68,7 +68,7 @@ mat3 _mat3()
 mat3 mat3_multiply(mat3 m1, mat3 m2)
 {
   mat3 r = _mat3();
-  int i,j,m,n;
+  int i,j,m;
   for(i=0;i<3;i++)
   {
     for(j=0;j<3;j++)

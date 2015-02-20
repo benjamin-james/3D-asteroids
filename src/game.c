@@ -73,7 +73,10 @@ void update(double delta)
 {
 	rot[1] += delta*joy_stick[1];
 	rot[2] += delta*joy_stick[0];
-	pos[2] += delta*speed;
+	vec3 dVec = vec3_rot(_vec3(0.f,0.f,speed*delta),rot);
+	pos[0] += dVec[0];
+	pos[1] += dVec[1];
+	pos[2] += dVec[2];
 }
 void handleKey(SDL_Keycode key, Uint32 status)
 {

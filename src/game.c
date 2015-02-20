@@ -71,11 +71,12 @@ void render()
 }
 void update(double delta)
 {
-	rot.x += delta*stick.y;
-	rot.z += delta*stick.x;
-	if(stick.z)//used for movement
+	rot.x += 10*delta*stick.y;
+	rot.z += 10*delta*stick.x;
+	speed += delta*stick.z;
+	if(speed)//used for movement
 	{
-		vec3 dVec = vec3_rot(_vec3(0.f,0.f,stick.z*delta),rot);
+		vec3 dVec = vec3_rot(_vec3(0.f,0.f,speed*delta),rot);
 		pos.x += dVec.x;
 		pos.y += dVec.y;
 		pos.z += dVec.z;
@@ -85,8 +86,8 @@ void handleKey(SDL_Keycode key, Uint32 status)
 {
 	if(status == SDL_PRESSED)
 	{
-	  if(key == SDLK_UP) stick.z = speed;
-	  else if(key == SDLK_DOWN) stick.z = -speed;
+	  if(key == SDLK_UP) stick.z = 0.5f;
+	  else if(key == SDLK_DOWN) stick.z = -0.5f;
 	}
 	else if(status == SDL_RELEASED)
 	{

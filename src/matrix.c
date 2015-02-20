@@ -44,7 +44,7 @@ mat4 mat4_clone(mat4 m)
   mat4 r;
   for(i = 0; i < 16; i++)
   {
-    r[i] = m[i];
+    r.m[i] = m.m[i];
   }
   return r;
 }

@@ -1,6 +1,6 @@
 #include "matrix.h"
 #include "math.h"
-#include "GL/gl.h"
+//#include "GL/gl.h"
 
 vec3 rotx(vec3 v, GLfloat a)
 {

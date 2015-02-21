@@ -1,3 +1,4 @@
+#include "stdlib.h"
 #include "game.h"
 #include "matrix.h"
 #include "SDL2/SDL.h"
@@ -95,7 +96,7 @@ void init()
 	{
 		for(j = 0; j < 8; j++)
 		{
-			ground[8*i+j] = _vec3((4-i),(rand() % 4),(4-j))
+			ground[8*i+j] = _vec3((4-i),(rand() % 4),(4-j));
 		}
 	}
 }

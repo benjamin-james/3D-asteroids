@@ -15,6 +15,8 @@ int main(int argc, char **argv)
   initGL();
   setViewport(width, height);
   Uint32 now,last = SDL_GetTicks();
+  SDL_ShowCursor(SDL_DISABLE);
+  SDL_WarpMouse(width/2,height/2);
   while(input(window))
   {
   	render();
@@ -50,6 +52,7 @@ int input(SDL_Window *window)
   						dx = (2.0*e.motion.x)/x - 1; //from (e.motion.x - x/2)/(x/2)
   						dy = (2.0*e.motion.y)/y - 1;
   						joystick(dx,-dy);//y is flipped (origin is at top)
+  						SDL_WarpMouse(x/2,y/2);
   						break;
   		}
   	}

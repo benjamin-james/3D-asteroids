@@ -8,6 +8,8 @@ vec3 stick = {0,0,0}; //joystick x y
 vec3 pos = {0,0,-5};
 vec3 rot = {0,0,0};
 
+vec3 ground[64];
+
 GLfloat speed = 0.2;
 
 float toDeg(float r)
@@ -84,6 +86,18 @@ void update(double delta)
 	while(rot.y >= 2.f*M_PI) rot.y -= 2.f*M_PI;
 	while(rot.z < 0) rot.z += 2.f*M_PI;
 	while(rot.z >= 2.f*M_PI) rot.z -= 2.f*M_PI;
+}
+void init()
+{
+	srand(time(0));
+	int i,j,c=0;
+	for(i = 0; i < 8; i++)
+	{
+		for(j = 0; j < 8; j++)
+		{
+			ground[8*i+j] = _vec3((4-i),(rand() % 4),(4-j))
+		}
+	}
 }
 void handleKey(SDL_Keycode key, Uint32 status)
 {

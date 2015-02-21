@@ -1,4 +1,4 @@
-#include "stdlib.h"
+#include "time.h"
 #include "game.h"
 #include "matrix.h"
 #include "SDL2/SDL.h"
@@ -91,7 +91,7 @@ void update(double delta)
 void init()
 {
 	srand(time(0));
-	int i,j,c=0;
+	int i,j;
 	for(i = 0; i < 8; i++)
 	{
 		for(j = 0; j < 8; j++)

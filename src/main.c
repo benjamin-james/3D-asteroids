@@ -35,7 +35,6 @@ int input(SDL_Window *window)
 {
 	SDL_Event e;
 	int x,y;
-	double dx,dy;
   	while(SDL_PollEvent(&e))
   	{
   		switch(e.type)
@@ -43,16 +42,12 @@ int input(SDL_Window *window)
   			case SDL_QUIT: 		return 0;
   			case SDL_WINDOWEVENT:	if(e.window.type == SDL_WINDOWEVENT_CLOSE) return 0;
   						break;
-  			case SDL_KEYDOWN:	
+  			case SDL_KEYDOWN:	if(e.key.keysym.sym == SDLK_ESCAPE) return 0;
   			case SDL_KEYUP:		handleKey(e.key.keysym.sym,e.key.state);
   						break;
-  			case SDL_MOUSEMOTION: 	
-  						
+  			case SDL_MOUSEMOTION: 	joystick(e.motion.xrel,-e.motion.yrel);
   						SDL_GetWindowSize(window,&x,&y);
-  						dx = (2.0*e.motion.x)/x - 1; //from (e.motion.x - x/2)/(x/2)
-  						dy = (2.0*e.motion.y)/y - 1;
-  						joystick(dx,-dy);//y is flipped (origin is at top)
-  						SDL_WarpMouseInWindow(window,x/2,y/2);
+						SDL_WarpMouseInWindow(window,x/2,y/2);
   						break;
   		}
   	}

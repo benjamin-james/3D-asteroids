@@ -2,7 +2,7 @@
 #define ENTITY_H
 
 #include "matrix.h"
-#include "SDL/SDL_opengl.h"
+#include "SDL2/SDL_opengl.h"
 
 typedef struct
 {

@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-g -Wall
-LDFLAGS=-lSDL2 -lm
+LDFLAGS=-lSDL2
 
 ifeq ($(OS),Windows_NT)
 	CCFLAGS += -D WIN32
@@ -15,11 +15,11 @@ else
 	UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
         	CCFLAGS += -D LINUX
-        	LDFLAGS += -lGL
+        	LDFLAGS += -lGL -lm
         endif
         ifeq ($(UNAME_S),Darwin)
         	CCFLAGS += -D OSX
-        	LDFLAGS += -framework OpenGL
+        	LDFLAGS += -framework OpenGL -lm
         endif
         UNAME_P := $(shell uname -p)
         ifeq ($(UNAME_P),x86_64)

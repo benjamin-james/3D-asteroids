@@ -1,7 +1,8 @@
+#include "stdlib.h"
+#include "SDL2/SDL_opengl.h"
+
 #include "entity.h"
 #include "matrix.h"
-
-#include "SDL2/SDL_opengl.h"
 
 entity entity_create()
 {

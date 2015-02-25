@@ -53,7 +53,7 @@ int input(SDL_Window *window)
   							setAcceleration(-0.5);
   						}
   						break;
-  			case SDL_KEYUP:		else if(e.key.keysym.sym == SDLK_UP || e.key.keysym.sym == SDLK_DOWN)
+  			case SDL_KEYUP:		if(e.key.keysym.sym == SDLK_UP || e.key.keysym.sym == SDLK_DOWN)
   						{
   							setAcceleration(0.0);
   						}

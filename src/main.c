@@ -43,8 +43,20 @@ int input(SDL_Window *window)
   			case SDL_QUIT: 		return 0;
   			case SDL_WINDOWEVENT:	if(e.window.type == SDL_WINDOWEVENT_CLOSE) return 0;
   						break;
-  			case SDL_KEYDOWN:	if(e.key.keysym.sym == SDLK_ESCAPE) return 0;
-  			case SDL_KEYUP:		handleKey(e.key.keysym.sym,e.key.state);
+  			case SDL_KEYDOWN:	if(e.key.keysym.sym == SDLK_ESCAPE) return 0;	//handling keys here for movement
+  						else if(e.key.keysym.sym == SDLK_UP)
+  						{
+  							setAcceleration(0.5);
+  						}
+  						else if(e.key.keysym.sym == SDLK_DOWN)
+  						{
+  							setAcceleration(-0.5);
+  						}
+  						break;
+  			case SDL_KEYUP:		else if(e.key.keysym.sym == SDLK_UP || e.key.keysym.sym == SDLK_DOWN)
+  						{
+  							setAcceleration(0.0);
+  						}
   						break;
   			case SDL_MOUSEMOTION: 	joystick(e.motion.xrel,-e.motion.yrel);//inverted y because mouse down means y goes up
   						SDL_GetWindowSize(window,&x,&y);

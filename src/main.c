@@ -10,7 +10,7 @@ int main(int argc, char **argv)
   int width = 800;
   int height = 600;
   SDL_Init(SDL_INIT_EVERYTHING);
-  SDL_Window *window = SDL_CreateWindow(*argv, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI);	
+  SDL_Window *window = SDL_CreateWindow(*argv, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);	
   SDL_GL_CreateContext(window);
   initGL();
   setViewport(width, height);
@@ -42,6 +42,10 @@ int input(SDL_Window *window)
   		{
   			case SDL_QUIT: 		return 0;
   			case SDL_WINDOWEVENT:	if(e.window.type == SDL_WINDOWEVENT_CLOSE) return 0;
+  						if(e.window.type == SDL_WINDOWEVENT_RESIZE)	//reset the view if the window size has changed
+  						{
+  							setViewport(event->window.data1,event->window.data2);
+  						}
   						break;
   			case SDL_KEYDOWN:	if(e.key.keysym.sym == SDLK_ESCAPE) return 0;	//handling keys here for movement
   						else if(e.key.keysym.sym == SDLK_UP)

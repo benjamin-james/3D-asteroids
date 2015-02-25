@@ -42,9 +42,9 @@ int input(SDL_Window *window)
   		{
   			case SDL_QUIT: 		return 0;
   			case SDL_WINDOWEVENT:	if(e.window.type == SDL_WINDOWEVENT_CLOSE) return 0;
-  						if(e.window.type == SDL_WINDOWEVENT_RESIZE)	//reset the view if the window size has changed
+  						if(e.window.type == SDL_WINDOWEVENT_RESIZED)	//reset the view if the window size has changed
   						{
-  							setViewport(event->window.data1,event->window.data2);
+  							setViewport(e.window.data1,e.window.data2);
   						}
   						break;
   			case SDL_KEYDOWN:	if(e.key.keysym.sym == SDLK_ESCAPE) return 0;	//handling keys here for movement

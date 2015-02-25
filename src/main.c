@@ -46,9 +46,9 @@ int input(SDL_Window *window)
   			case SDL_KEYDOWN:	if(e.key.keysym.sym == SDLK_ESCAPE) return 0;
   			case SDL_KEYUP:		handleKey(e.key.keysym.sym,e.key.state);
   						break;
-  			case SDL_MOUSEMOTION: 	joystick(e.motion.xrel,-e.motion.yrel);
+  			case SDL_MOUSEMOTION: 	joystick(e.motion.xrel,-e.motion.yrel);//inverted y because mouse down means y goes up
   						SDL_GetWindowSize(window,&x,&y);
-						SDL_WarpMouseInWindow(window,x/2,y/2);
+						SDL_WarpMouseInWindow(window,x/2,y/2);//put mouse at center so that it doesn't move away
   						break;
   		}
   	}
@@ -63,6 +63,7 @@ void initGL()
 	glDepthFunc( GL_LEQUAL );
 	glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
 }
+//setting a screen size (upon creation or resize of window)
 void setViewport(int width, int height)
 {
 	const GLdouble pi = 3.1415926535897932384626433832795;

@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   initGL();
   setViewport(width, height);
   Uint32 now,last = SDL_GetTicks();
-  SDL_ShowCursor(SDL_DISABLE);
+  //SDL_ShowCursor(SDL_DISABLE);
   SDL_WarpMouseInWindow(window,width/2,height/2);
   init();
   while(input(window))
@@ -63,8 +63,8 @@ int input(SDL_Window *window)
   						}
   						break;
   			case SDL_MOUSEMOTION: 	joystick(e.motion.xrel,-e.motion.yrel);//inverted y because mouse down means y goes up
-  						SDL_GetWindowSize(window,&x,&y);
-						SDL_WarpMouseInWindow(window,x/2,y/2);//put mouse at center so that it doesn't move away
+  						//SDL_GetWindowSize(window,&x,&y);
+						//SDL_WarpMouseInWindow(window,x/2,y/2);//put mouse at center so that it doesn't move away
   						break;
   		}
   	}

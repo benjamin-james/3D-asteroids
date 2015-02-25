@@ -1,4 +1,6 @@
 #include "time.h"
+#include "stdlib.h"
+#include "math.h"
 #include "game.h"
 #include "matrix.h"
 #include "SDL2/SDL_opengl.h"

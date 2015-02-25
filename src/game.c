@@ -76,6 +76,7 @@ void render()
 	
 	glLoadIdentity();	//resets view
 }
+//Function called every frame after render(), sends the time in milliseconds since the last call to update()
 void update(double delta)
 {
 	rot.z += delta*stick.x/10;	//sets roll with horizontal mouse movement

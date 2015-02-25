@@ -4,7 +4,8 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_opengl.h"
 
-vec3 stick = {0,0,0}; //joystick x y, z is speed
+vec3 stick = {0,0,0}; //joystick x y is look, z is acceleration
+			//i.e. the camera
 
 vec3 pos = {0,0,-5};	//ship position
 vec3 rot = {0,0,0};	//ship rotation
@@ -79,7 +80,9 @@ void update(double delta)
 	rot.z += delta*stick.x/10;	//sets roll with horizontal mouse movement
 	rot.x += delta*stick.y/10;	//sets pitch with vertical mouse movement
 	stick.x = stick.y = 0;		//resets stick: very strong friction apparently
-	printf("%f %f\n",toDeg(rot.z),toDeg(rot.x));	//debug
+	#ifdef DEBUG 
+		printf("%f %f\n",toDeg(rot.z),toDeg(rot.x));	//debug
+	#endif
 	speed += delta*stick.z;		//sets speed
 	if(speed)//used for movement
 	{
@@ -109,19 +112,11 @@ void init()
 		}
 	}
 }
-void handleKey(SDL_Keycode key, Uint32 status)	//self explanitory
+void setAcceleration(double d) //sets "acceleration" by changing what the speed will change by each update()
 {
-	if(status == SDL_PRESSED)
-	{
-	  if(key == SDLK_UP) stick.z = 0.5f;
-	  else if(key == SDLK_DOWN) stick.z = -0.5f;
-	}
-	else if(status == SDL_RELEASED)
-	{
-	  stick.z = 0;
-	}
+	stick.z = d;
 }
-void joystick(double x, double y) //range of [-1,1] for x and y
+void joystick(double x, double y) //range of [-1,1] for x and y, this changes the ship's direction
 {
 	
 	stick.x = x;

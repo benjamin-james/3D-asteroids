@@ -1,7 +1,6 @@
 #include "time.h"
 #include "game.h"
 #include "matrix.h"
-#include "SDL2/SDL.h"
 #include "SDL2/SDL_opengl.h"
 
 vec3 stick = {0,0,0}; //joystick x y is look, z is acceleration

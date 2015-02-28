@@ -11,8 +11,8 @@ typedef struct
 } *entity, entity_t;
 
 entity entity_create();
-void entity_destroy(entity e);
+void entity_destroy(entity);
 
-void render(entity e);
-void update(entity e, float delta);
+void entity_render(entity);
+void entity_update(entity, float);
 #endif

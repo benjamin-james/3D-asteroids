@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-march=native -g -Wall
+CFLAGS=-march=native -g -Wall -O2
 LDFLAGS=-lm
 
 ifeq ($(OS),Windows_NT)

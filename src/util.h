@@ -4,8 +4,8 @@
 #define DEBUG 1 //for now
 #include "entity.h"
 
-void showFatalError(char *msg);
-void showWarning(char *msg); 
+void showFatalError(char *);
+void showWarning(char *); 
 inline float toDeg(float);
 inline float toRad(float);
 entity loadObj(char *);

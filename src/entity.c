@@ -19,3 +19,15 @@ void entity_destroy(entity e)
   if(e->index) glDeleteLists(e->index,1);
   free(e);
 }
+void entity_render(entity e)
+{
+	if(!e) return;
+}
+void entity_update(entity e, float delta)
+{
+	if(!e) return;
+	vec3 dVec = vec3_rot(e->vel,e->rot);
+	e->pos.x += dVec.x*delta;
+	e->pos.y += dVec.y*delta;
+	e->pos.z += dVec.z*delta;
+}

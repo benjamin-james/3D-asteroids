@@ -3,5 +3,5 @@
 
 void update(double);
 void render();
-
+void game_init();
 #endif

@@ -4,6 +4,7 @@
 #include "SDL2/SDL.h"
 #include "entity.h"
 #include "util.h"
+#include "array.h"
 
 void showFatalError(char *msg)
 {
@@ -27,21 +28,20 @@ entity loadObj(char *filename)
 {
 	FILE *f = fopen(filename,"r");
 	if(!f) showFatalError("Could not open file");
-	ssize_t read;
 	size_t len = 0;
 	char *line = NULL;
 	entity e = entity_create();
 	array *faces = array_create(4);
 	array *vertices = array_create(4);
 	//array *normals = array_create(1);
-	while((read = getline(&line,&len,f) != -1)	//read file line by line
+	while(getline(&line,&len,f))	//read file line by line
 	{
 		if(line[0] == '#') continue; //a comment
 		char *tok = strtok(line," ");
 		if(!strcmp(tok,"v"))	//a plain vertex
 		{
 			vec3 *v = malloc(sizeof(vec3));
-			sscanf(line,"v %f %f %f",v->x,v->y,v->z);
+			sscanf(line,"v %f %f %f",&v->x,&v->y,&v->z);
 			array_append(vertices,v);
 		}
 		else if(!strcmp(tok,"vn")) //a vertex normal

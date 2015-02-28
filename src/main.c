@@ -17,6 +17,7 @@ int main(int argc, char **argv)
   Uint32 now,last = SDL_GetTicks();
   SDL_ShowCursor(SDL_DISABLE);
   SDL_WarpMouseInWindow(window,width/2,height/2);
+  game_init();
   while(input(window))
   {
   	render();

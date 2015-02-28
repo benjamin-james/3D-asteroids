@@ -6,7 +6,7 @@
 
 typedef struct
 {
-  vec3 pos,rot,vel;
+  vec3 pos,rot,lin,ang;
   GLuint index;
 } *entity, entity_t;
 

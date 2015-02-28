@@ -1,25 +1,17 @@
-#include "time.h"
 #include "stdlib.h"
 #include "math.h"
-#include "game.h"
-#include "matrix.h"
 #include "SDL2/SDL_opengl.h"
 
-vec3 stick = {0,0,0}; //joystick x y is look, z is acceleration
-			//i.e. the camera
+#include "game.h"
+#include "matrix.h"
+#include "util.h"
+#include "events.h"
 
 vec3 pos = {0,0,-5};	//ship position
 vec3 rot = {0,0,0};	//ship rotation
 
-vec3 ground[64];	//mesh for ground: not implemented yet
-
 GLfloat speed = 0.2;	//speed multiplier
 
-//Function which converts radians to degrees
-float toDeg(float r)
-{
-	return r*180.f/M_PI;
-}
 //Moves to location and rotation of ship and renders it
 void renderShip()
 {
@@ -57,8 +49,7 @@ void renderShip()
 	}
 	glEnd();
 }
-//Main rendering function
-//Should call other rendering functions, one for each "object"
+//The one function to rule them all
 void render()
 {
 	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
@@ -79,16 +70,16 @@ void render()
 //Function called every frame after render(), sends the time in milliseconds since the last call to update()
 void update(double delta)
 {
+	vec3 stick = getInput();
 	rot.z += delta*stick.x/10;	//sets roll with horizontal mouse movement
 	rot.x += delta*stick.y/10;	//sets pitch with vertical mouse movement
-	stick.x = stick.y = 0;		//resets stick: very strong friction apparently
 	#ifdef DEBUG 
 		printf("%f %f\n",toDeg(rot.z),toDeg(rot.x));	//debug
 	#endif
 	speed += delta*stick.z;		//sets speed
 	if(speed)//used for movement
 	{
-		vec3 dVec = vec3_rot(_vec3(0.f,0.f,speed*delta),rot);	//gets velocity vector, rotates direction {0,0,speed} in rotation rot
+		vec3 dVec = vec3_rot(_vec3(0.f,0.f,delta*speed),rot);	//gets velocity vector, rotates direction {0,0,speed} in rotation rot
 		pos.x += dVec.x;
 		pos.y += dVec.y;
 		pos.z += dVec.z;
@@ -100,29 +91,4 @@ void update(double delta)
 	while(rot.y >= 2.f*M_PI) rot.y -= 2.f*M_PI;
 	while(rot.z < 0) rot.z += 2.f*M_PI;
 	while(rot.z >= 2.f*M_PI) rot.z -= 2.f*M_PI;
-}
-void init()	
-{
-	srand(time(0));
-	int i,j;
-	//initializes ground randomly
-	for(i = 0; i < 8; i++)
-	{
-		for(j = 0; j < 8; j++)
-		{
-			ground[8*i+j] = _vec3((4-i),(rand() % 4),(4-j));
-		}
-	}
-}
-void setAcceleration(double d) //sets "acceleration" by changing what the speed will change by each update()
-{
-	stick.z = d;
-}
-void joystick(double x, double y) //range of [-1,1] for x and y, this changes the ship's direction
-{
-	
-	stick.x = x;
-	stick.y = y;
-	//stick.x = atan2(y,x); //polar
-	//stick.y = hypot(x,y);
 }

@@ -19,19 +19,19 @@ typedef struct
 
 mat4 _mat4();
 mat3 _mat3();
-mat3 mat3_rotx(float a);
-mat3 mat3_roty(float a);
-mat3 mat3_rotz(float a);
-vec3 mat3_mcolumn(mat3 m, vec3 column);
-mat3 mat3_multiply(mat3 m1, mat3 m2);
-mat3 mat3_rotate(vec3 axis);
-mat3 mat3_translate(mat3 m, vec3 pos);
-mat4 mat4_multiply(mat4 m1, mat4 m2);
-vec3 _vec3(float a, float b, float c);
-mat4 mat4_translate(mat4 m, vec3 pos);
-mat4 mat4_rotate(mat4 m, vec3 rot);
-vec3 vec3_rot(vec3 pos, vec3 rot);
-vec3 rotz(vec3 v, float a);
-vec3 roty(vec3 v, float a);
-vec3 rotx(vec3 v, float a);
+mat3 mat3_rotx(float);
+mat3 mat3_roty(float);
+mat3 mat3_rotz(float);
+vec3 mat3_mcolumn(mat3, vec3);
+mat3 mat3_multiply(mat3, mat3);
+mat3 mat3_rotate(vec3);
+mat3 mat3_translate(mat3, vec3);
+mat4 mat4_multiply(mat4, mat4);
+vec3 _vec3(float, float, float);
+mat4 mat4_translate(mat4, vec3);
+mat4 mat4_rotate(mat4, vec3);
+vec3 vec3_rot(vec3, vec3);
+vec3 rotz(vec3, float);
+vec3 roty(vec3, float);
+vec3 rotx(vec3, float);
 #endif

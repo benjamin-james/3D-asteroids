@@ -8,6 +8,6 @@ void showFatalError(char *msg);
 void showWarning(char *msg); 
 inline float toDeg(float);
 inline float toRad(float);
-entity loadObj();
+entity loadObj(char *);
 
 #endif

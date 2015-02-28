@@ -2,6 +2,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "SDL2/SDL.h"
+#include "SDL2/SDL_opengl.h"
 #include "entity.h"
 #include "util.h"
 #include "array.h"
@@ -72,6 +73,7 @@ entity loadObj(char *filename)
 		{
 			glBegin(GL_QUADS);
 			{
+				glColor4f(0.8f,0.8f,0.8f,1.f);
 				vec3 *v;
 				v = array_get(face,0);
 				glVertex3f(v->x,v->y,v->z);
@@ -88,6 +90,7 @@ entity loadObj(char *filename)
 		{
 			glBegin(GL_TRIANGLES);
 			{
+				glColor4f(0.8f,0.8f,0.8f,1.f);
 				vec3 *v;
 				v = array_get(face,0);
 				glVertex3f(v->x,v->y,v->z);

@@ -92,3 +92,7 @@ void update(double delta)
 	while(rot.z < 0) rot.z += 2.f*M_PI;
 	while(rot.z >= 2.f*M_PI) rot.z -= 2.f*M_PI;
 }
+void game_init()
+{
+	
+}

@@ -22,6 +22,7 @@ void entity_destroy(entity e)
 void entity_render(entity e)
 {
 	if(!e) return;
+	glCallList(e->index);
 }
 void entity_update(entity e, float delta)
 {

@@ -35,7 +35,7 @@ entity loadObj(char *filename)
 	array *faces = array_create(4);
 	array *vertices = array_create(4);
 	//array *normals = array_create(1);
-	while(getline(&line,&len,f))	//read file line by line
+	while(getline(&line,&len,f) != -1)	//read file line by line
 	{
 		if(line[0] == '#') continue; //a comment
 		char *tok = strtok(line," ");

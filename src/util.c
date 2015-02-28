@@ -22,7 +22,7 @@ inline float toRad(float r)
 {
 	return r*M_PI/180.f;
 }
-entity loadObj()
+entity loadObj(char *str)
 {
 	entity e = NULL;
 	return e;

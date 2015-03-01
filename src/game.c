@@ -11,7 +11,10 @@ vec3 pos = {0,0,-5};	//ship position
 vec3 rot = {0,0,0};	//ship rotation
 
 GLfloat speed = 0.2;	//speed multiplier
-
+void game_init()
+{
+	//entity ship = loadObj("ship.obj");	//cant render it yet
+}
 //Moves to location and rotation of ship and renders it
 void renderShip()
 {
@@ -92,7 +95,4 @@ void update(double delta)
 	while(rot.z < 0) rot.z += 2.f*M_PI;
 	while(rot.z >= 2.f*M_PI) rot.z -= 2.f*M_PI;
 }
-void game_init()
-{
-	
-}
+

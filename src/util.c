@@ -25,6 +25,35 @@ inline float toRad(float r)
 {
 	return r*M_PI/180.f;
 }
+GLuint loadBMP(char *filename)
+{
+	GLuint texture;
+	SDL_Surface *img = SDL_LoadBMP(filename);
+	if(!img) return 0;
+	if((img->w & (img->w - 1)) || (img->h & (img->h - 1)))
+	{
+		showWarning("Not a valid bmp file");
+	}
+	GLenum format = GL_RGBA;//when in doubt
+	GLint bpp = img->format->BytesPerPixel;
+	if(bpp == 4)
+	{
+		if(img->format->Rmask == 0xFF) format = GL_RGBA;
+		else format = GL_BGRA;
+	}
+	else if(bpp == 3)
+	{
+		if(img->format->Rmask == 0xFF) format = GL_RGB;
+		else format = GL_BGR; 
+	}
+	glGenTextures(1,&texture);
+	glBindTexture(GL_TEXTURE_2D,texture);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+	glTexImage2D(GL_TEXTURE_2D,0,bpp,img->w,img->h,0,format,GL_UNSIGNED_BYTE,img->pixels);
+	if(img) SDL_FreeSurface(img);
+	return texture;
+}
 entity loadObj(char *filename)
 {
 	FILE *f = fopen(filename,"r");

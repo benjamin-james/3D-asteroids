@@ -54,6 +54,19 @@ GLuint loadBMP(char *filename)
 	if(img) SDL_FreeSurface(img);
 	return texture;
 }
+char *loadFile(char *filename)
+{
+	if(!filename) return -1;
+	FILE *f = fopen(filename,"r");
+	fseek(f,0,SEEK_END);
+	long size = ftell(f);
+	rewind(f);
+	char *str = malloc(size);
+	fread(str,sizeof(char),size,f);
+	fclose(f);
+	str[size-1] = 0;//make sure it is null-terminated
+	return str;
+}
 entity loadObj(char *filename)
 {
 	FILE *f = fopen(filename,"r");

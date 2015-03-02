@@ -10,5 +10,6 @@ void showWarning(char *);
 inline float toDeg(float);
 inline float toRad(float);
 entity loadObj(char *);
+char *loadFile(char *);
 GLuint loadBMP(char *);
 #endif

@@ -13,6 +13,17 @@ void showFatalError(char *msg)
 	SDL_Quit();
 	exit(-1);
 }
+void sighandler(int signum)
+{
+	char str[30];
+	switch(signum)
+	{
+		case SIGINT:	sprintf(str,"Interrupted");
+		case SIGSEGV:	sprintf(str,"Segmentation fault")
+		default:	sprintf(str,"Unknown signal %d",signum);
+	}
+	showFatalError(str);
+}
 void showWarning(char *msg)
 {
 	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING,"Warning!",msg,NULL);

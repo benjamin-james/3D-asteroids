@@ -19,8 +19,9 @@ void sighandler(int signum)
 	char str[30];
 	switch(signum)
 	{
-		case SIGINT:	sprintf(str,"Interrupted");
-		case SIGSEGV:	sprintf(str,"Segmentation fault")
+		case SIGINT:	sprintf(str,"Interrupted"); break;
+		case SIGSEGV:	sprintf(str,"Segmentation fault"); break;
+		case SIGFPE:	sprintf(str,"One does not simply divide by 0"); break;
 		default:	sprintf(str,"Unknown signal %d",signum);
 	}
 	showFatalError(str);

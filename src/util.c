@@ -16,7 +16,7 @@ void showFatalError(char *msg)
 void showWarning(char *msg)
 {
 	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING,"Warning!",msg,NULL);
-}
+}/*
 inline float toDeg(float r)
 {
 	return (float)(r*180.f/M_PI);
@@ -24,7 +24,7 @@ inline float toDeg(float r)
 inline float toRad(float r)
 {
 	return (float)(r*M_PI/180.f);
-}
+}*/
 GLuint loadBMP(char *filename)
 {
 	GLuint texture;

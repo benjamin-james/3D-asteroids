@@ -19,11 +19,11 @@ void showWarning(char *msg)
 }
 inline float toDeg(float r)
 {
-	return r*180.f/M_PI;
+	return (float)(r*180.f/M_PI);
 }
 inline float toRad(float r)
 {
-	return r*M_PI/180.f;
+	return (float)(r*M_PI/180.f);
 }
 GLuint loadBMP(char *filename)
 {
@@ -56,7 +56,7 @@ GLuint loadBMP(char *filename)
 }
 char *loadFile(char *filename)
 {
-	if(!filename) return -1;
+	if(!filename) return NULL;
 	FILE *f = fopen(filename,"r");
 	fseek(f,0,SEEK_END);
 	long size = ftell(f);

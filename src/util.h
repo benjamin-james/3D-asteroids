@@ -10,6 +10,7 @@
 #define toRad(r) (r*M_PI/180)
 void showFatalError(char *);
 void showWarning(char *); 
+void sighandler(int);
 //inline float toDeg(float);
 //inline float toRad(float);
 entity loadObj(char *);
